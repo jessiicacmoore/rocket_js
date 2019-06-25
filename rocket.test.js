@@ -42,7 +42,39 @@ describe('Rocket', () => {
   });
 
   describe('liftOff', () => {
-    // 
+    test("it should return false if rocket is already flying", () => {
+      // arrange
+      let flightStatus = true;
+      // act
+      let rocket = new Rocket({flying: flightStatus});
+      // assert
+      expect(rocket.liftOff()).toBe(false);
+    });
+
+    test("rocket's flying status should remain true if rocket is already flying", () => {
+      // arrange
+      let flightStatus = true;
+      // act
+      let rocket = new Rocket({flying: flightStatus});
+      rocket.liftOff();
+      // assert
+      expect(rocket.flying).toBe(true);
+    });
+
+    test("it should return true if rocket is not flying", () => {
+      // arrange + act
+      let rocket = new Rocket();
+      // act
+      expect(rocket.liftOff()).toBe(true);
+    });
+
+    test("rocket's flying status should change to true if rocket is not flying", () => {
+      // arrange +act
+      let rocket = new Rocket();
+      rocket.liftOff();
+      // assert
+      expect(rocket.flying).toBe(true);
+    });
   });
 
   // ...
